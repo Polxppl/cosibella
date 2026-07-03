@@ -57,7 +57,7 @@ If you want to run the application without Docker you need to met the following 
 
 ## API Documentation
 
-* **Get orders**:
+1. **GET /orders**:
 ```bash
   curl --request GET \
   --header 'content-type: application/json' \
@@ -75,7 +75,7 @@ If you want to run the application without Docker you need to met the following 
     }>
   ```
 
-* **Change products cost**:
+2. **PUT /order/:orderSerialNumber/productsCost**:
 ```bash
   curl --request PUT \
   --header 'content-type: application/json' \
