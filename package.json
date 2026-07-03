@@ -15,14 +15,21 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "tsx ./src/index.ts",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "ajv": "^8.20.0",
+    "axios": "^1.18.1",
+    "express": "^5.2.1",
+    "json-schema-to-ts": "^3.1.1",
+    "pg-promise": "^12.7.0"
   },
   "devDependencies": {
     "@tsconfig/node23": "^23.0.4",
+    "@types/express": "^5.0.6",
     "@types/node": "^26.1.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"

@@ -1,6 +1,7 @@
 node_modules
 dist
 
+.vscode
 .env
 .env.development.local
 .env.test.local

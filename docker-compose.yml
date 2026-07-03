@@ -1,4 +1,20 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.local
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      DB_HOST: db
+      NODE_ENV: development
+      IDO_SELL_API_KEY: ${IDO_SELL_API_KEY}
+      IDO_SELL_URL: ${IDO_SELL_URL}
   db:
     image: postgres:18
     container_name: cosibella_postgres_db
@@ -6,7 +22,6 @@ services:
       POSTGRES_USER: ${DB_ROOT_USER}
       POSTGRES_PASSWORD: ${DB_ROOT_PASSWORD}
 
-      DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
     ports:
