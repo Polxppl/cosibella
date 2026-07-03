@@ -15,6 +15,7 @@ export class PostgresDetailedOrderRepository extends BaseRepository implements D
         o.id,
         o.serial_number,
         o.products_cost,
+        o.currency_id,
         COALESCE(json_agg(json_build_object('id', d.id, 'type', d.type)), '[]'::json) AS documents
       FROM app."order" o
       LEFT JOIN app."document" d ON d.order_serial_number = o.serial_number

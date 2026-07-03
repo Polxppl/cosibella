@@ -44,6 +44,7 @@ export class IdoSellTask {
       id: order.orderId,
       productsCost: order.orderDetails.payments.orderCurrency.orderProductsCost,
       serialNumber: order.orderSerialNumber,
+      currencyId: order.orderDetails.payments.orderCurrency.currencyId,
     }
   }
 

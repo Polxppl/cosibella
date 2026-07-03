@@ -7,12 +7,17 @@ export class OrderParser {
   }
 
   static fromDb(dbOrder: DbOrder): Order {
-    const { products_cost, serial_number, ...el } = dbOrder;
-    return { productsCost: products_cost / 100, serialNumber: serial_number, ...el };
+    const { products_cost, serial_number, currency_id, ...el } = dbOrder;
+    return { productsCost: products_cost / 100, currencyId: currency_id, serialNumber: serial_number, ...el };
   }
 
   static toDb(order: Order): DbOrder {
-    const { productsCost, serialNumber, ...el } = order;
-    return { products_cost: OrderParser.productsCostToDb(productsCost), serial_number: serialNumber, ...el };
+    const { productsCost, serialNumber, currencyId, ...el } = order;
+    return {
+      products_cost: OrderParser.productsCostToDb(productsCost),
+      currency_id: currencyId,
+      serial_number: serialNumber,
+      ...el
+    };
   }
 }

@@ -7,5 +7,5 @@ export type DocumentType = typeof DOCUMENT_TYPE[keyof typeof DOCUMENT_TYPE];
 
 export type Document = {
   id: string;
-  type: DocumentType;
+  type: string;
 }

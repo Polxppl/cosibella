@@ -5,6 +5,7 @@ CREATE TABLE app."order" (
 	id varchar NOT NULL,
 	serial_number integer NOT NULL,
 	products_cost integer NOT NULL,
+  currency_id varchar NOT NULL,
 	CONSTRAINT order_pk PRIMARY KEY (serial_number)
 );
 

@@ -11,12 +11,15 @@ export class PostgresOrderRepository extends BaseRepository implements OrderRepo
   public async upsertOrders(orders: Array<Order>): Promise<void> {
     const parsedOrders = orders.map((el) => OrderParser.toDb(el));
     await this.db.none(`
-      INSERT INTO app.order (id, serial_number, products_cost)
+      INSERT INTO app.order (id, serial_number, products_cost, currency_id)
       SELECT
         orders.id,
         orders.serial_number,
-        orders.products_cost
-      FROM json_to_recordset($[values]) AS orders(id varchar, serial_number integer, products_cost integer)
+        orders.products_cost,
+        orders.currency_id
+      FROM json_to_recordset($[values]) AS orders(
+        id varchar, serial_number integer, products_cost integer, currency_id varchar
+      )
       ON CONFLICT (serial_number) DO UPDATE
       SET serial_number = EXCLUDED.serial_number, products_cost = EXCLUDED.products_cost
     `, { values: JSON.stringify(parsedOrders) });

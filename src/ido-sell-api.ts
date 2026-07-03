@@ -12,8 +12,9 @@ const orderPaymentsSchema = {
       type: 'object',
       properties: {
         orderProductsCost: { type: 'number' },
+        currencyId: { type: 'string' },
       },
-      required: ['orderProductsCost'],
+      required: ['orderProductsCost', 'currencyId'],
     }
   },
   required: ['orderCurrency']
