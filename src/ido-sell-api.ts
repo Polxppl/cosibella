@@ -80,7 +80,6 @@ const documentsResponseValidator = ajv.compile<DocumentsResponse>(documentsRespo
 export class IdoSellApi {
   private api: AxiosInstance;
   constructor() {
-    console.log('URL', process.env['IDO_SELL_URL']);
     this.api = axios.create({
       baseURL: process.env['IDO_SELL_URL'],
       headers: {
@@ -96,7 +95,6 @@ export class IdoSellApi {
       'orders/orders/search',
       { params: { resultsLimit: 10, resultsPage, ordersBy: [{ elementName: 'order_time', sortDirection: 'ASC' }] }}
     );
-    console.log('getOrdersResponse', JSON.stringify(data));
     if (!orderSearchResponseValidator(data)) {
       throw new Error(ajv.errorsText(orderSearchResponseValidator.errors));
     }
