@@ -85,3 +85,11 @@ If you want to run the application without Docker you need to met the following 
 ```
 **Response**:
  200
+
+
+## Tests
+
+To run tests simply run:
+```bash
+  npm run test
+```

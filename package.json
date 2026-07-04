@@ -17,8 +17,8 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsx node_modules/tape/bin/tape ./src/**/*.test.ts",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "ajv": "^8.20.0",
@@ -31,6 +31,8 @@
     "@tsconfig/node23": "^23.0.4",
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.0",
+    "@types/tape": "^5.8.1",
+    "tape": "^5.10.2",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   }

@@ -71,7 +71,7 @@ const documentsResponseSchema = {
   required: ['documents']
 } as const satisfies JSONSchema;
 
-type DocumentsResponse = FromSchema<typeof documentsResponseSchema>;
+export type DocumentsResponse = FromSchema<typeof documentsResponseSchema>;
 
 type ParsedDocumentsResponse = { documents: { documentId: string, documentType: string } };
 
@@ -79,8 +79,9 @@ const documentsResponseValidator = ajv.compile<DocumentsResponse>(documentsRespo
 
 export class IdoSellApi {
   private api: AxiosInstance;
-  constructor() {
-    this.api = axios.create({
+
+  static getIsoSellApi(): IdoSellApi {
+    const axiosInstance = axios.create({
       baseURL: process.env['IDO_SELL_URL'],
       headers: {
         'X-API-KEY': process.env['IDO_SELL_API_KEY'],
@@ -88,6 +89,10 @@ export class IdoSellApi {
         'Content-Type': 'application/json',
       }
     });
+    return new IdoSellApi(axiosInstance);
+  }
+  constructor(axiosInstance: AxiosInstance) {
+    this.api = axiosInstance;
   }
 
   public async getOrders(resultsPage: number): Promise<OrderSearchResponse> {

@@ -7,7 +7,7 @@ import { Order } from './resources/order';
 export class IdoSellTask {
   private api: IdoSellApi;
   constructor(private orderRepository: OrderRepository, private documentRepository: DocumentRepository) {
-    this.api = new IdoSellApi();
+    this.api = IdoSellApi.getIsoSellApi();
   }
 
   private async *orderIterator(): AsyncGenerator<OrderSearchResponse> {
